@@ -8,17 +8,13 @@ correo,pais, ciudad, politica_datos)
     const usuarioCreado = {
     id : Date.now(),
     nombreCompleto : `${nombre} ${apellido}`,
-    documento : {
-        tipo : tipo_identificacion,
-        numero : numero_identificacion
-    },
+    tipo : tipo_identificacion,
+    numero : numero_identificacion,
     FechaNacimiento : fecha_nacimiento,
     celular : celular,
     correo : correo,
-    pais : {
-        pais : pais,
-        ciudad : ciudad 
-    },
+    pais : pais,
+    ciudad : ciudad,
     datosPersonales : politica_datos,
     fechaRegistro : new Date().toLocaleDateString()
        
@@ -44,9 +40,18 @@ formulario.addEventListener('submit', function(event) {
     const politica_datos = document.getElementById('politica_datos').value;
 
     const crearUsuario = CrearUsuario(nombre,apellido,tipo_identificacion,numero_identificacion,fecha_nacimiento,celular,pais,ciudad,politica_datos);
-
-    console.log('Registro Creado');
-    const usuarioJSON = JSON.stringify(crearUsuario);
-    localStorage.setItem(crearUsuario.id , usuarioJSON);
     
+function objetoAStringArray(objeto) {
+    const Objeto = Object.entries(objeto).map(([clave,valor])=>  `${clave}: ${valor}`);
+    return Objeto
+    
+}
+    const datosUsuario = objetoAStringArray(crearUsuario);
+    localStorage.setItem(crearUsuario.id ,JSON.stringify(datosUsuario));
+    console.log('Registro Creado');
+    //const usuarioJSON = JSON.stringify(crearUsuario);
+    //localStorage.setItem(crearUsuario.id, usuarioJSON);
+
+    
+
 });
