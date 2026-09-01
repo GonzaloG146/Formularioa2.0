@@ -55,3 +55,27 @@ function objetoAStringArray(objeto) {
     
 
 });
+
+const formularioPokemon = document.getElementById('formPokedex');
+formularioPokemon.addEventListener('submit',async function(event) {
+    event.preventDefault();
+
+    const nombrePokemon = document.getElementById('pokemonInput').value.trim().toUpperCase
+    if(!nombrePokemon) return; 
+
+    const Respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`);
+
+    if (!Respuesta.ok) {
+        throw new Error('¡No encontre nada chamo!');
+    } 
+    const datos = await Respuesta.JSON();
+
+    cositasPokemon(datos);
+}
+)
+
+function cositasPokemon(argumentos) {
+
+    //Recibir los datos y extraer lo que necesito.
+    //Asignar la imagen y el 
+}
